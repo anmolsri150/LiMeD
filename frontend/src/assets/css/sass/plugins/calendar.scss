@@ -1,0 +1,259 @@
+/* 18.Calendar */
+.cv-wrapper {
+    &,
+    div {
+      font-size: inherit !important;
+      line-height: inherit !important;
+    }
+  
+    .cv-day,
+    .cv-event,
+    .cv-header-day,
+    .cv-header-days,
+    .cv-week,
+    .cv-weeks {
+      border-style: inherit;
+      border-color: inherit;
+      border-width: inherit;
+      background-color: inherit;
+      background-color: inherit !important;
+    }
+  
+    .cv-header {
+      margin-bottom: 1em !important;
+      display: inline-block;
+      border: none;
+  
+      .cv-header-nav {
+        float: right;
+        position: relative;
+  
+        button {
+          cursor: pointer;
+        }
+  
+        .previousYear,
+        .nextYear {
+          display: none;
+        }
+  
+        .currentPeriod {
+          padding: 0.4em 1.3em !important;
+          height: 32px !important;
+          border-radius: 50px;
+          outline: initial !important;
+          box-shadow: none !important;
+          font-size: 0.8rem;
+  
+          background-color: $theme-color-1;
+          border-color: $theme-color-1;
+          color: $button-text-color;
+  
+          &:hover {
+            color: $button-text-color;
+            background-color: darken($theme-color-1, 8%);
+            border-color: darken($theme-color-1, 8%);
+          }
+        }
+  
+        .previousPeriod,
+        .nextPeriod {
+          outline: initial !important;
+          box-shadow: initial !important;
+          border-radius: 40px !important;
+          text-align: center;
+          min-width: 30px;
+          height: 30px;
+          padding: 0.55rem 0;
+          background: $theme-color-1;
+          color: $foreground-color;
+          border: 1px solid $theme-color-1;
+          line-height: 0.9 !important;
+          font-size: 0.76rem;
+          font-weight: normal !important;
+          font-size: 0px;
+          span {
+            line-height: 1 !important;
+            font-size: 0.76rem;
+            font-weight: normal !important;
+          }
+  
+          &:hover {
+            background-color: transparent;
+            border-color: lighten($theme-color-1, 10%);
+            color: $theme-color-1;
+          }
+        }
+  
+        .previousPeriod {
+          margin-right: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          font-family: "simple-line-icons";
+          padding-right: 6px;
+  
+          &::after {
+            font-size: 0.76rem;
+            padding-left: 5px;
+            content: "\e605";
+          }
+        }
+  
+        .nextPeriod {
+          margin-left: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          font-family: "simple-line-icons";
+          padding-right: 6px;
+  
+          &::after {
+            font-size: 0.76rem;
+            padding-left: 8px;
+            content: "\e606";
+          }
+        }
+      }
+  
+      .periodLabel {
+        float: left;
+        padding: inherit;
+        font-size: inherit;
+      }
+    }
+  
+    .cv-header-days {
+      min-height: 50px;
+      border-color: $separator-color-light !important;
+  
+      .cv-header-day,
+      .cv-day {
+        padding: 15px 5px;
+        color: $theme-color-1;
+        overflow: hidden;
+        flex: 1 0 0%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: 700;
+        font-size: 90%;
+        box-sizing: inherit;
+  
+        border-bottom: 1px solid $separator-color-light !important;
+        border-right: 1px solid $separator-color-light !important;
+      }
+  
+      :last-child {
+        border-right: inherit !important;
+      }
+    }
+  
+    .cv-weeks {
+      .cv-week {
+        .cv-day {
+          border-bottom: 1px solid $separator-color-light !important;
+          border-left: 1px solid $separator-color-light !important;
+  
+          &.today {
+            .cv-day-number {
+              cursor: pointer;
+              border-radius: 50%;
+              margin: 4px;
+              width: 28px;
+              height: 28px;
+              padding: 5px;
+              background: $theme-color-1;
+              color: $button-text-color;
+              text-align: center;
+            }
+          }
+  
+          &.draghover {
+            box-shadow: inset 0 0 0.2em 0.2em lighten($theme-color-2, 10%);
+          }
+  
+          &.outsideOfMonth {
+            .cv-day-number {
+              color: $primary-color;
+              opacity: 0.3;
+            }
+          }
+        }
+  
+        :first-child {
+          border-left: initial !important;
+        }
+  
+        .cv-day-number {
+          padding: 10px;
+        }
+  
+        .cv-event {
+          font-size: 0.85em !important;
+          border-radius: 25px !important;
+          text-align: center !important;
+          padding: 0px 5px !important;
+          background: $theme-color-1 !important;
+          font-family: inherit !important;
+          color: $foreground-color !important;
+          margin-top: 17px;
+  
+          &.toBeContinued {
+            border-right-style: none !important;
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+          }
+  
+          &.continued {
+            border-left-style: none !important;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+          }
+  
+          &.continued:before,
+          &.toBeContinued:after,
+          .startTime,
+          .endTime {
+            color: inherit !important;
+            font-weight: 700;
+            content: " \21e2 ";
+          }
+  
+          &.primary {
+            background: $theme-color-1 !important;
+          }
+  
+          &.secondary {
+            background: $theme-color-2 !important;
+          }
+  
+          &.info {
+            background-color: $info-color !important;
+          }
+  
+          &.warning {
+            background-color: $warning-color !important;
+          }
+  
+          &.success {
+            background-color: $success-color !important;
+          }
+  
+          &.danger {
+            background-color: $error-color !important;
+          }
+        }
+      }
+    }
+  
+    .cv-week:last-of-type {
+      .cv-day {
+        border-bottom: initial !important;
+      }
+    }
+  
+    .today {
+      background: initial;
+      background-color: initial !important;
+    }
+  }
