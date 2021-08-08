@@ -1,0 +1,13 @@
+{
+    "name":"Samarth Khanna",
+    "age":21,
+    "sex":"male",
+    "blood_group":"b positive",
+    "email":"khannasamarth18@gmail.com",
+    "mobile":"1234567890",
+    "test":"RT-PCR",
+    "outcome":"negative",
+    "timestamp":"1628440356",
+    "summary":"the patient was tested negative for SARS-COV 2 with a CT GENE Value of 40",
+    "attachments":["report.pdf","scan.jpg"]
+}
