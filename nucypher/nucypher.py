@@ -7,6 +7,7 @@ import time
 import datetime
 import json
 
+import sys
 import base58
 import base64
 
@@ -30,7 +31,7 @@ class ncipfs(object):
     docstring for ncipfs
     """
     def __init__(self):
-        self.name = "David"
+        self.cid = sys.argv[1]
         pass
 
     def connect(self, nucypher_network, ipfs_api_gateway): 
