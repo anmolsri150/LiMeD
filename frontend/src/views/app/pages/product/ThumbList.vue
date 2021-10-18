@@ -1,4 +1,3 @@
-
 <template>
   <b-row>
     <b-colxx class="disable-text-selection">

@@ -145,16 +145,20 @@ export default {
     return {
       categories: [
         {
-          label: "Cakes",
-          value: "Cakes"
+          label: "Test",
+          value: "test"
         },
         {
-          label: "Cupcakes",
-          value: "Cupcakes"
+          label: "Summary",
+          value: "summary"
         },
         {
-          label: "Desserts",
-          value: "Desserts"
+          label: "Report",
+          value: "report"
+        },
+        {
+          label: "Check up",
+          value: "check-up"
         }
       ],
       statuses: [
