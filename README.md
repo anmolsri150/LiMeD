@@ -1,7 +1,7 @@
 # LiMeD
 [View Live](https://limed-gecko.web.app/)
 
-##The problem LiMeD solves
+## The problem LiMeD solves
 While the most developed countries in the world saw failing medical facilities, Taiwan was preparing itself for a major outbreak for 17 years (since the SARS outbreak). The preparation included using medical and travel records of citizens and categorizing high-risk personnel. This led to the free and safe movement of other citizens and provided medical assistance in time. As of today, Taiwan has 15K Cases and around 700 deaths.
 
 This can be proof of concept that enough data with the right authorities can be leveraged to help people.
@@ -14,12 +14,12 @@ People shall receive an incentive to update their medical profile, and in return
 
 In the future, this can be extended to Universal Health Care and provide better facilities to people. This shall also reduce the time of treatments as the ailments of the person are already known and the side effects of any medication can be predicted.
 
-##Challenges we ran into
+## Challenges we ran into
 Implementation of encryption and role-based access system. (Using NuCypher for handling role-based access)
 Granting access to users for a specified time duration.
 Structuring a person's medical data.
 Querying data stored in different formats
 Change in Medical record storage format. For Eg Newer format for 3D scans like MRI or CT.
 
-##Technologies we used
+## Technologies we used
 IPFS Portis Filecoin
