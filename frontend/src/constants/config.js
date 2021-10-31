@@ -3,7 +3,7 @@ import { UserRole } from "../utils/auth.roles";
 export const defaultMenuType = 'menu-sub-hidden' // 'menu-default', 'menu-sub-hidden', 'menu-hidden';
 export const adminRoot = '/app';
 export const searchPath = `${adminRoot}/#`
-export const buyUrl = 'https://1.envato.market/nEyZa'
+export const buyUrl = 'http://localhost:8080/app'
 export const apiUrl = 'https://api.coloredstrategies.com';
 
 export const subHiddenBreakpoint = 1440
@@ -25,7 +25,7 @@ export const currentUser = {
   role: UserRole.Admin
 }
 
-export const isAuthGuardActive = false;
+export const isAuthGuardActive = true;
 export const themeRadiusStorageKey = 'theme_radius'
 export const themeSelectedColorStorageKey = 'theme_selected_color'
 export const defaultColor = 'dark.purplemonster'
