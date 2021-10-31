@@ -20,6 +20,7 @@
     "ipfs-core": "^0.9.1",
     "libp2p": "^0.32.1",
     "nft.storage": "^3.3.0",
+    "truffle": "^5.4.17",
     "v-contextmenu": "^2.9.0",
     "video.js": "^7.8.3",
     "vue": "^2.6.11",

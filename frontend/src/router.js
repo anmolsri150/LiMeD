@@ -31,13 +31,13 @@ const routes = [
         path: "documents",
         component: () =>
           import(/* webpackChunkName: "product" */ "./views/app/pages/product/ThumbList")
-        // meta: { roles: [UserRole.Admin, UserRole.Editor] },
+          // meta: { roles: [UserRole.Admin, UserRole.Editor] },
       },
       {
         path: "access",
         component: () =>
           import(/* webpackChunkName: "product" */ "./views/app/pages/product/DataList")
-        // meta: { roles: [UserRole.Admin, UserRole.Editor] },
+          // meta: { roles: [UserRole.Admin, UserRole.Editor] },
       },
       {
         path: "dashboards",
