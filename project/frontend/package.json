@@ -13,7 +13,7 @@
     "@portis/web3": "^4.0.5",
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.15.0",
-    "chart.js": "2.9.3",
+    "chart.js": "2.9.4",
     "core-js": "^3.6.5",
     "dag-service": "0.0.0-dev",
     "firebase": "^7.15.5",
