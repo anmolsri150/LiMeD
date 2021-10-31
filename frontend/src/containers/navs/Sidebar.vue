@@ -156,6 +156,12 @@ const patient = [{
     to: `${adminRoot}/access`,
   },
   {
+    id: "other-pages",
+    icon: "iconsminds-digital-drawing",
+    label: "Access Other's Documents",
+    to: `${adminRoot}/accessDocuments`,
+  },
+  {
     id: "single",
     icon: "iconsminds-profile",
     label: "Your Profile",

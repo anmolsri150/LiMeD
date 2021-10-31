@@ -1,7 +1,7 @@
 <template>
 <b-row>
     <b-colxx xxs="12">
-        <h1>{{ userProfile.name }}</h1>
+        <h1>{{ userProfile._name }}</h1>
         <piaf-breadcrumb />
       <b-card no-body class="mb-4">
         <div class="position-absolute card-top-buttons">
@@ -12,16 +12,16 @@
         <single-lightbox thumb="/assets/img/profiles/1.jpg" large="/assets/img/profiles/1.jpg" class-name="card-img-top" />
         <b-card-body>
           <p class="text-muted text-small mb-2">Gender:</p>
-          <p class="mb-3">{{ userProfile.gender }}</p>
+          <p class="mb-3">{{ userProfile._name }}</p>
           <p class="text-muted text-small mb-2">DOB:</p>
-          <p class="mb-3">{{ userProfile.dob }}</p>
+          <p class="mb-3">{{ userProfile._dob }}</p>
           <p class="text-muted text-small mb-2">Blood Group:</p>
           <p class="mb-3">
-            <b-badge variant="outline-secondary" class="mb-1 mr-1" pill>{{ userProfile.bloodgroup }}</b-badge>
+            <b-badge variant="outline-secondary" class="mb-1 mr-1" pill>{{ userProfile._bloodgroup }}</b-badge>
           </p>
           <p class="text-muted text-small mb-2">{{$t('menu.contact')}}: Phone</p>
           <p class="mb-3">
-            <b-badge variant="outline-secondary" class="mb-1 mr-1" pill>{{ userProfile.contact }}</b-badge>
+            <b-badge variant="outline-secondary" class="mb-1 mr-1" pill>{{ userProfile._phone }}</b-badge>
           </p>
         </b-card-body>
       </b-card>
@@ -56,9 +56,9 @@ export default {
       ...mapGetters(["currentUser", "userType", "userProfile"])
     },
     mounted() {
-      // if (this.userType && this.userType === 'hospital') {
-      //   this.$router.push('/app/profile/hospital')
-      // }
+      if (this.userType && this.userType === 'hospital') {
+        this.$router.push('/app/profile/hospital')
+      }
     },
     methods: {},
 }

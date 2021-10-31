@@ -31,7 +31,7 @@
         </label>
         <label class="form-group has-top-label">
           <input class="form-control" v-model="registerForm.address" />
-          <span>Address</span>
+          <span>Wallet Address</span>
         </label>
         <b-button size="sm" variant="outline-primary" @click="registerPatient">Submit</b-button>
       </b-tab>
@@ -45,25 +45,29 @@
         </div>
         <single-lightbox thumb="/assets/img/profiles/1.jpg" large="/assets/img/profiles/1.jpg" class-name="card-img-top" />
         <b-card-body>
-          <p class="text-muted text-small mb-2">Name:</p>
-          <p class="mb-3">{{ searchedUser.name }}</p>
-          <p class="text-muted text-small mb-2">Gender:</p>
-          <p class="mb-3">{{ searchedUser.gender }}</p>
-          <p class="text-muted text-small mb-2">DOB:</p>
-          <p class="mb-3">{{ searchedUser.dob }}</p>
-          <p class="text-muted text-small mb-2">Blood Group:</p>
-          <p class="mb-3">
-            <b-badge variant="outline-secondary" class="mb-1 mr-1" pill>{{ searchedUser.bloodgroup }}</b-badge>
-          </p>
-          <p class="text-muted text-small mb-2">{{$t('menu.contact')}}: Phone</p>
-          <p class="mb-3">
-            <b-badge variant="outline-secondary" class="mb-1 mr-1" pill>{{ searchedUser.contact }}</b-badge>
-          </p>
-          <p class="mb-3">
-            <b-button variant="outline-white" class="icon-button" @click="browseRecords">
-              View Records
-            </b-button>
-          </p>
+          <b-row>
+            <b-colxx xxs="6" class="mb-3">
+              <p class="text-muted text-small mb-2">Name:</p>
+              <p class="mb-3">{{ searchedUser._name }}</p>
+              <p class="text-muted text-small mb-2">Gender:</p>
+              <p class="mb-3">{{ searchedUser._gender }}</p>
+              <p class="text-muted text-small mb-2">DOB:</p>
+              <p class="mb-3">{{ searchedUser._dob }}</p>
+            </b-colxx>
+            <b-colxx xxs="6" class="mb-3">
+              <p class="text-muted text-small mb-2">Blood Group:</p>
+              <p class="mb-3">
+                <b-badge variant="outline-secondary" class="mb-1 mr-1" pill>{{ searchedUser._bloodgroup }}</b-badge>
+              </p>
+              <p class="text-muted text-small mb-2">{{$t('menu.contact')}}: Phone</p>
+              <p class="mb-3">
+                <b-badge variant="outline-secondary" class="mb-1 mr-1" pill>{{ searchedUser._phone }}</b-badge>
+              </p>
+            </b-colxx>
+          </b-row>
+          <b-button  @click="browseRecords">
+            Records
+          </b-button>
         </b-card-body>
       </b-card>
     </div>
@@ -142,7 +146,7 @@ export default {
         alert("Patient doesn't exists/or no access!")
         return false
       });
-      this.currentPatient = patient
+      this.searchedUser = patient
       this.loading = false
       this.isPatient = true
       console.log(patient)

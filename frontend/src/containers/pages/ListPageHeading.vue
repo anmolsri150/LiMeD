@@ -12,7 +12,7 @@
           >{{ this.t === 't' ? "Grant Access" : $t('pages.add-new') }}</b-button>
         </div>
       </template>
-      <add-new-modal :categories="categories" :statuses="statuses"></add-new-modal>
+      <add-new-modal :categories="categories" :statuses="statuses" :uid="uid" @added="added"></add-new-modal>
       <piaf-breadcrumb />
       <div class="mb-2 mt-2">
         <b-button
@@ -118,28 +118,12 @@ export default {
     "to",
     "total",
     "perPage",
-    "addNewEnable"
+    "addNewEnable",
+    "uid"
   ],
   data() {
     return {
-      categories: [
-        {
-          label: "Test",
-          value: "test"
-        },
-        {
-          label: "Summary",
-          value: "summary"
-        },
-        {
-          label: "Report",
-          value: "report"
-        },
-        {
-          label: "Check up",
-          value: "check-up"
-        }
-      ],
+      categories: ["Test","Summary","Report","Check up"],
       statuses: [
         {
           text: "ON HOLD",
@@ -166,6 +150,11 @@ export default {
       ],
       pageSizes: [4, 8, 12]
     };
+  },
+  methods: {
+    added() {
+      this.$emit('added', true)
+    }
   }
 };
 </script>

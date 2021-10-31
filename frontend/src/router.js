@@ -30,7 +30,7 @@ const routes = [
       {
         path: "documents",
         component: () =>
-          import(/* webpackChunkName: "product" */ "./views/app/pages/product/ThumbList")
+          import(/* webpackChunkName: "product" */ "./views/app/pages/product/ThumbListPatient")
         // meta: { roles: [UserRole.Admin, UserRole.Editor] },
       },
       {
@@ -42,14 +42,20 @@ const routes = [
       {
         path: "patients/:id",
         component: () =>
-          import(/* webpackChunkName: "product" */ "./views/app/pages/product/PatientList")
+          import(/* webpackChunkName: "product" */ "./views/app/pages/product/ThumbList")
         // meta: { roles: [UserRole.Admin, UserRole.Editor] },
       },
       {
         path: "access",
         component: () =>
-          import(/* webpackChunkName: "product" */ "./views/app/pages/product/DataList")
+          import(/* webpackChunkName: "product" */ "./views/app/pages/product/ManageAccess")
           // meta: { roles: [UserRole.Admin, UserRole.Editor] },
+      },
+      {
+        path: "accessDocuments",
+        component: () =>
+          import(/* webpackChunkName: "product" */ "./views/app/pages/product/PatientListAccess")
+        // meta: { roles: [UserRole.Admin, UserRole.Editor] },
       },
       {
         path: "dashboards",

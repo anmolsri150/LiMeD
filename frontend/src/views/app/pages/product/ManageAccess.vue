@@ -1,47 +1,26 @@
 <template>
-  <b-row>
-    <b-colxx class="disable-text-selection">
-      <list-page-heading
-        :uid="uid"
-        t="s"
-        title="asd"
-        :selectAll="selectAll"
-        :isSelectedAll="isSelectedAll"
-        :isAnyItemSelected="isAnyItemSelected"
-        :keymap="keymap"
-        :addNewEnable="true"
-        type="document"
-        :displayMode="displayMode"
-        :changeDisplayMode="changeDisplayMode"
-        :changeOrderBy="changeOrderBy"
-        :changePageSize="changePageSize"
-        :sort="sort"
-        :searchChange="searchChange"
-        :from="from"
-        :to="to"
-        :total="total"
-        :perPage="perPage"
-        @added="getPatientRecords"
-      ></list-page-heading>
-      <template v-if="isLoad">
-        <list-page-listing
-          :displayMode="displayMode"
-          :items="items"
-          :selectedItems="selectedItems"
-          :toggleItem="toggleItem"
-          :lastPage="lastPage"
-          :perPage="perPage"
-          :page="page"
-          :changePage="changePage"
-          :handleContextMenu="handleContextMenu"
-          :onContextMenuAction="onContextMenuAction"
-        ></list-page-listing>
-      </template>
-      <template v-else>
-        <div class="loading"></div>
-      </template>
-    </b-colxx>
-  </b-row>
+  <b-card class="mb-4" no-body v-if="!loading">
+    <b-tabs card no-fade>
+      <b-tab title="Grant Access" active title-item-class="w-50 text-center">
+        <label class="form-group has-top-label">
+          <input class="form-control" v-model="searchAddr" />
+          <span>User's Address</span>
+        </label>
+        <b-button size="sm" variant="outline-primary" @click="grant">Grant</b-button>
+      </b-tab>
+      <b-tab title="Revoke Access" active title-item-class="w-50 text-center">
+        <label class="form-group has-top-label">
+          <input class="form-control" v-model="searchAddr" />
+          <span>User's Address</span>
+        </label>
+        <b-button size="sm" variant="outline-primary" @click="revoke">Revoke</b-button>
+      </b-tab>
+    </b-tabs>
+  </b-card>
+  <div v-else>
+    <h2>Loading...</h2>
+    <div class="loading"></div>
+  </div>
 </template>
 
 <script>
@@ -50,7 +29,6 @@ import { apiUrl } from "../../../../constants/config";
 import ListPageHeading from "../../../../containers/pages/ListPageHeading";
 import ListPageListing from "../../../../containers/pages/ListPageListing";
 import {mapGetters} from "vuex";
-import {toGatewayURL} from "nft.storage";
 
 export default {
   components: {
@@ -59,7 +37,18 @@ export default {
   },
   data() {
     return {
-      uid: null,
+      isPatient: false,
+      loading: false,
+      searchAddr: null,
+      searchedUser: null,
+      registerForm: {
+        name: null,
+        phone: null,
+        gender: null,
+        dob: null,
+        bloodGroup: null,
+        address: null,
+      },
       isLoad: false,
       apiBase: apiUrl + "/cakes/fordatatable",
       displayMode: "thumb",
@@ -78,46 +67,48 @@ export default {
       selectedItems: []
     };
   },
-  beforeMount() {
-    this.uid = this.$route.params.id
-  },
   methods: {
-    async registerPatient() {
-      console.log(result)
-      this.resetForm()
-    },
-    async getPatientRecords() {
-      console.log('sd')
-      this.isLoad = false
-      const records = []
-      const recordsList = await window.contract.methods.getPatientRecords(this.$route.params.id).call({
+    async grant() {
+      this.loading = true
+      const patient = await window.contract.methods.addAuth(this.searchAddr).send({
         from: this.currentUser.uid
       }).catch((err) => {
         console.log(err.message)
-        alert("Patient record doesn't exists/or no access!")
+        alert("Patient doesn't exists/or no access!")
         return false
       });
-      if (recordsList) {
-        for (let x = 0; x < recordsList.ipfs.length; x++) {
-          const objj = await toGatewayURL(recordsList.ipfs[x])
-          const obj = await axios.get(objj.href)
-          const imgg = toGatewayURL(obj.data.image)
-
-          records.push({
-            title: recordsList._name[x],
-            category: recordsList._category[x],
-            status: recordsList._status[x],
-            date: recordsList._date[x],
-            img: imgg.href,
-            description: recordsList._description[x],
-          })
-          console.log(records)
-        }
+      this.loading = false
+      console.log(patient)
+      this.searchAddr = null
+    },
+    async revoke() {
+      this.loading = true
+      const patient = await window.contract.methods.revokeAuth(this.searchAddr).send({
+        from: this.currentUser.uid
+      }).catch((err) => {
+        console.log(err.message)
+        alert(err.message)
+        return false
+      });
+      this.loading = false
+      console.log(patient)
+      this.searchAddr = null
+    },
+    browseRecords() {
+      this.$router.push({
+        path: '/app/patients/' + this.searchAddr
+      })
+    },
+    resetForm() {
+      this.registerForm = {
+        name: null,
+        phone: null,
+        gender: null,
+        dob: null,
+        bloodGroup: null,
+        address: null,
       }
-      // this.searchedUser = patient
-      this.isLoad = true
-      console.log(records)
-      this.items = records
+      this.searchAddr = null
     },
     loadItems() {
       this.isLoad = false;
@@ -248,13 +239,12 @@ export default {
   },
   mounted() {
     // this.loadItems();
-    // const vm = this
-    // vm.isLoad = false;
-    // vm.items = vm.$store.state.items;
-    // setTimeout(() => {
-    //   vm.isLoad = true;
-    // }, 2000)
-    this.getPatientRecords()
+    const vm = this
+    vm.isLoad = false;
+    vm.items = vm.$store.state.items;
+    setTimeout(() => {
+      vm.isLoad = true;
+    }, 2000)
   }
 };
 </script>

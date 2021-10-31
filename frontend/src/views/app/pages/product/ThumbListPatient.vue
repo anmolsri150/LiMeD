@@ -2,12 +2,14 @@
   <b-row>
     <b-colxx class="disable-text-selection">
       <list-page-heading
+        :uid="uid"
         t="s"
         title="asd"
         :selectAll="selectAll"
         :isSelectedAll="isSelectedAll"
         :isAnyItemSelected="isAnyItemSelected"
         :keymap="keymap"
+        type="document"
         :displayMode="displayMode"
         :changeDisplayMode="changeDisplayMode"
         :changeOrderBy="changeOrderBy"
@@ -18,6 +20,7 @@
         :to="to"
         :total="total"
         :perPage="perPage"
+        @added="getPatientRecords"
       ></list-page-heading>
       <template v-if="isLoad">
         <list-page-listing
@@ -45,6 +48,8 @@ import axios from "axios";
 import { apiUrl } from "../../../../constants/config";
 import ListPageHeading from "../../../../containers/pages/ListPageHeading";
 import ListPageListing from "../../../../containers/pages/ListPageListing";
+import {mapGetters} from "vuex";
+import {toGatewayURL} from "nft.storage";
 
 export default {
   components: {
@@ -53,6 +58,7 @@ export default {
   },
   data() {
     return {
+      uid: null,
       isLoad: false,
       apiBase: apiUrl + "/cakes/fordatatable",
       displayMode: "thumb",
@@ -71,7 +77,47 @@ export default {
       selectedItems: []
     };
   },
+  beforeMount() {
+    this.uid = this.$route.params.id
+  },
   methods: {
+    async registerPatient() {
+      console.log(result)
+      this.resetForm()
+    },
+    async getPatientRecords() {
+      console.log('sd')
+      this.isLoad = false
+      const records = []
+      const recordsList = await window.contract.methods.getPatientRecords(this.currentUser.uid).call({
+        from: this.currentUser.uid
+      }).catch((err) => {
+        console.log(err.message)
+        alert("Patient record doesn't exists/or no access!")
+        return false
+      });
+      if (recordsList) {
+        for (let x = 0; x < recordsList.ipfs.length; x++) {
+          const objj = await toGatewayURL(recordsList.ipfs[x])
+          const obj = await axios.get(objj.href)
+          const imgg = toGatewayURL(obj.data.image)
+
+          records.push({
+            title: recordsList._name[x],
+            category: recordsList._category[x],
+            status: recordsList._status[x],
+            date: recordsList._date[x],
+            img: imgg.href,
+            description: recordsList._description[x],
+          })
+          console.log(records)
+        }
+      }
+      // this.searchedUser = patient
+      this.isLoad = true
+      console.log(records)
+      this.items = records
+    },
     loadItems() {
       this.isLoad = false;
 
@@ -177,6 +223,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(["currentUser", "userType", "userProfile"]),
     isSelectedAll() {
       return this.selectedItems.length >= this.items.length;
     },
@@ -200,12 +247,13 @@ export default {
   },
   mounted() {
     // this.loadItems();
-    const vm = this
-    vm.isLoad = false;
-    vm.items = vm.$store.state.items;
-    setTimeout(() => {
-      vm.isLoad = true;
-    }, 2000)
+    // const vm = this
+    // vm.isLoad = false;
+    // vm.items = vm.$store.state.items;
+    // setTimeout(() => {
+    //   vm.isLoad = true;
+    // }, 2000)
+    this.getPatientRecords()
   }
 };
 </script>
