@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@textile/ipfs-lite": "^0.1.6",
+    "dag-service": "0.0.0-dev",
+    "dotenv": "^10.0.0",
+    "ipfs-core": "^0.9.1",
+    "ipfs-http-client": "^51.0.1",
+    "ipld": "^0.30.1",
+    "ipld-block": "^0.11.1",
+    "js-nucypher": "^1.0.5",
+    "libp2p": "^0.32.1",
+    "nft.storage": "^3.0.1",
+    "typescript": "^4.3.5"
+  }
+}

@@ -1,0 +1,218 @@
+/* 08.Carousel */
+.glide__slides {
+    & > * {
+        white-space: initial;
+    }
+}
+
+.glide-item {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.slider-nav {
+    text-align: center;
+    .left-arrow,
+    .right-arrow {
+        font-size: 20px;
+        color: $theme-color-1;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 5px;
+        padding-top: 14px;
+    }
+
+    .slider-dot-container {
+        display: inline-block;
+    }
+
+    .btn {
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: initial;
+        }
+    }
+}
+
+.slider-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+    background: $separator-color;
+    outline: initial !important;
+    border: initial;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+
+    &.glide__bullet--active {
+        background: $theme-color-1;
+    }
+}
+
+.glide__slides .card .card-body {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.glide__slides .card .w-50 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.glide {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.glide {
+    .card-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.glide.details {
+    img {
+        margin-bottom: 0;
+        object-fit: cover;
+    }
+
+    .glide__slides {
+        margin-bottom: 0;
+    }
+}
+
+.glide.thumbs {
+    .glide__arrows {
+        button {
+            position: absolute;
+            transform: translateY(-50%);
+            line-height: 1;
+            padding: 9px 12px;
+        }
+    }
+}
+
+.glide__slides {
+    .glide__slide {
+        display: flex;
+        height: unset;
+        .card {
+            display: flex;
+            flex-grow: 1;
+
+            .w-50 {
+                display: flex;
+            }
+
+            .card-body {
+                flex-direction: column;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+.glide.thumbs {
+    cursor: pointer;
+    width: 340px;
+    margin: 0 auto;
+
+    @include respond-below(sm) {
+        width: 300px;
+    }
+
+    @include respond-below(xs) {
+        width: calc(100% - 80px);
+    }
+
+    .glide__slide {
+        text-align: center;
+        opacity: 0.4;
+        transition: opacity $animation-time-short;
+        &.active,
+        &:hover {
+            opacity: 1;
+        }
+
+        img {
+            width: 60px;
+            margin-bottom: 0;
+        }
+    }
+
+    .glide__slides {
+        margin-bottom: 0;
+        margin: 0 auto;
+    }
+
+    .glide__arrows {
+        width: 100%;
+
+        .glide__arrow--left {
+            border: initial;
+            background: initial;
+            box-shadow: initial;
+            top: 23px;
+            left: -50px;
+            font-size: 20px;
+            color: $theme-color-1;
+        }
+
+        .glide__arrow--right {
+            border: initial;
+            background: initial;
+            box-shadow: initial;
+            top: 23px;
+            right: -50px;
+            font-size: 20px;
+            color: $theme-color-1;
+        }
+    }
+}
+
+.glide.details img {
+    object-fit: cover;
+}
+
+.glide.details img {
+    width: 100%;
+}
+
+@media (max-width: 991px) {
+    .glide.details img {
+        max-height: 500px;
+    }
+}
+@media (max-width: 767px) {
+    .glide.details img {
+        max-height: 400px;
+    }
+}
+@media (max-width: 575px) {
+    .glide.details img {
+        max-height: 300px;
+    }
+}
+@media (max-width: 419px) {
+    .glide.details img {
+        max-height: 200px;
+    }
+}
