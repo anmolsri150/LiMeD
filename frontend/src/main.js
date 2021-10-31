@@ -42,6 +42,25 @@ window.contract = new web3.eth.Contract([
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      }
+    ],
+    "name": "addAuth",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "success",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "string",
         "name": "_name",
         "type": "string"
@@ -63,6 +82,87 @@ window.contract = new web3.eth.Contract([
       }
     ],
     "name": "addHospital",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_phone",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_gender",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_dob",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_bloodgroup",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      }
+    ],
+    "name": "addPatient",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_category",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_date",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_ipfs",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_desc",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_stat",
+        "type": "string"
+      }
+    ],
+    "name": "addRecord",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -148,6 +248,89 @@ window.contract = new web3.eth.Contract([
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      }
+    ],
+    "name": "getPatientDetails",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_phone",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_gender",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_dob",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_bloodgroup",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      }
+    ],
+    "name": "getPatientRecords",
+    "outputs": [
+      {
+        "internalType": "string[]",
+        "name": "_name",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_category",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_description",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_status",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_date",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "ipfs",
+        "type": "string[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
@@ -176,8 +359,40 @@ window.contract = new web3.eth.Contract([
     ],
     "stateMutability": "view",
     "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pindex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      }
+    ],
+    "name": "revokeAuth",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "success",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
   }
-], "0x70c3d6948738b55a25144201FE080bB34f35f595")
+], "0x15eAC431EE991111E13d4FD86b883Ebd1D1a4752")
 Vue.use(BootstrapVue);
 Vue.use(VueI18n);
 const messages = { en: en, es: es };

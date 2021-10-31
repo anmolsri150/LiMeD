@@ -104,21 +104,85 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import {
+  adminRoot,
   menuHiddenBreakpoint,
   subHiddenBreakpoint,
 } from "../../constants/config";
-import menuItems from "../../constants/menu";
+// import menuItems from "../../constants/menu";
 import { UserRole } from "../../utils/auth.roles";
+
+const hospital = [{
+  id: "home",
+  icon: "iconsminds-home",
+  label: "Dashboard",
+  to: `${adminRoot}/dashboard`,
+},
+  {
+    id: "pages",
+    icon: "iconsminds-digital-drawing",
+    label: "Manage Patients",
+    to: `${adminRoot}/patients`,
+  },
+  {
+    id: "single",
+    icon: "iconsminds-profile",
+    label: "Your Profile",
+    to: `${adminRoot}/profile/hospital`,
+  },
+  {
+    id: "docs",
+    icon: "iconsminds-gear",
+    label: "App Settings",
+    to: `${adminRoot}/dashboard`,
+  }
+];
+
+const patient = [{
+  id: "home",
+  icon: "iconsminds-home",
+  label: "Dashboard",
+  to: `${adminRoot}/dashboard`,
+},
+  {
+    id: "second-menu",
+    icon: "iconsminds-library",
+    label: "Documents",
+    to: `${adminRoot}/documents`,
+  },
+  {
+    id: "pages",
+    icon: "iconsminds-digital-drawing",
+    label: "Manage Access",
+    to: `${adminRoot}/access`,
+  },
+  {
+    id: "single",
+    icon: "iconsminds-profile",
+    label: "Your Profile",
+    to: `${adminRoot}/profile/patient`,
+  },
+  {
+    id: "docs",
+    icon: "iconsminds-gear",
+    label: "App Settings",
+    to: `${adminRoot}/dashboard`,
+  }
+];
 
 export default {
   data() {
     return {
       selectedParentMenu: "",
-      menuItems,
+      menuItems: [],
       viewingParentMenu: "",
     };
   },
   mounted() {
+    if (this.$store.getters.userType === 'hospital') {
+      this.menuItems = hospital
+    } else {
+      this.menuItems = patient
+    }
     this.selectMenu();
     window.addEventListener("resize", this.handleWindowResize);
     document.addEventListener("click", this.handleDocumentClick);

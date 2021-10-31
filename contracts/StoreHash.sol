@@ -98,8 +98,8 @@ contract Patient is Hospital {
 
     function getPatientDetails(address _addr) public view returns(string memory _name, string memory _phone, string memory _gender, string memory _dob, string memory _bloodgroup) {
         if (!isHospital[msg.sender]) {
-            require(isAuth[_addr][msg.sender], "No permission to get Records");
             require(isPatient[_addr], "No Patients found with the given address");
+            require(isAuth[_addr][msg.sender], "No permission to get Records");
         }
         patient memory tmp = patients[_addr];
         return (tmp.name, tmp.phone, tmp.gender, tmp.dob, tmp.bloodgroup);

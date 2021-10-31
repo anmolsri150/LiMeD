@@ -2,6 +2,7 @@ import { UserRole } from "../utils/auth.roles";
 
 export const defaultMenuType = 'menu-sub-hidden' // 'menu-default', 'menu-sub-hidden', 'menu-hidden';
 export const adminRoot = '/app';
+export const patientRoot = '/user';
 export const searchPath = `${adminRoot}/#`
 export const buyUrl = 'http://localhost:8080/app'
 export const apiUrl = 'https://api.coloredstrategies.com';

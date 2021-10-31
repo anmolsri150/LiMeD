@@ -49,7 +49,7 @@ const {
     minLength,
     email
 } = require("vuelidate/lib/validators");
-import { adminRoot } from '../../constants/config';
+import {adminRoot, currentUser, patientRoot} from '../../constants/config';
 
 export default {
     data() {
@@ -62,11 +62,41 @@ export default {
         ...mapActions(["login"])
     },
     watch: {
-        currentUser(val) {
+        async currentUser(val) {
             if (val && val.uid && val.uid.length > 0) {
+                // setTimeout(() => {
+                //     this.$router.push(adminRoot);
+                // }, 200);
+              console.log(val.uid)
+              const isHospital = await window.contract.methods.getHospitalByAddress(val.uid).call().catch((err) => {
+                console.log(err.message)
+                return false
+              });
+              let isPatient = false
+              if (!isHospital) {
+                isPatient = await window.contract.methods.getPatientDetails(val.uid).call().catch((err) => {
+                  console.log(err.message)
+                  return false
+                });
+                if (isPatient) {
+                  this.$store.commit('setUserType', 'patient')
+                  this.$store.commit('setUserProfile', isPatient)
+                  setTimeout(() => {
+                    this.$router.push(patientRoot);
+                  }, 200);
+                }
+              } else {
+                this.$store.commit('setUserType', 'hospital')
+                this.$store.commit('setUserProfile', isHospital)
                 setTimeout(() => {
                     this.$router.push(adminRoot);
                 }, 200);
+              }
+              if (!isHospital && !isPatient) {
+                this.$store.commit('setUserType', 'unregistered')
+              }
+              console.log(isHospital)
+              console.log(isPatient)
             }
         },
         loginError(val) {
