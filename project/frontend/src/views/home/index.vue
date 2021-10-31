@@ -39,32 +39,16 @@
           <headroom style="height:initial;">
             <nav>
               <div class="container d-flex align-items-center justify-content-between">
-                <a class="navbar-logo pull-left" @click="scrollTo('#home')" href="javascript:;">
-                  <span class="white"></span>
-                  <span class="dark"></span>
+                <a @click="scrollTo('#home')" href="javascript:;">
+                  <img class="footer-logo" alt="footer logo" src="/logo.png" style="height: 5rem;" />
                 </a>
                 <ul class="navbar-nav d-none d-lg-flex flex-row">
-                  <li class="nav-item">
-                    <a @click="scrollTo('#features')" href="javascript:;">FEATURES</a>
-                  </li>
-                  <li class="nav-item">
-                    <a @click="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a @click="scrollTo('#components')" href="javascript:;">COMPONENTS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a @click="scrollTo('#apps')" href="javascript:;">APPS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a @click="scrollTo('#themes')" href="javascript:;">THEMES</a>
-                  </li>
                   <li class="nav-item pl-4">
                     <a
                       class="btn btn-outline-semi-light btn-sm pr-4 pl-4"
                       target="_blank"
                       :href="buyUrl"
-                    >BUY</a>
+                    >DASHBOARD</a>
                   </li>
                 </ul>
                 <span
@@ -95,15 +79,16 @@
                 <div class="col-12 col-xl-4 col-lg-5 col-md-6">
                   <div class="home-text">
                     <div class="display-1">
-                      MAGIC IS IN
-                      <br />THE DETAILS
+                      <h1>What is LiMed?
+                        <span class="typed-text">{{ typeValue }}</span>
+                        <span class="cursor" :class="{'typing': typeStatus}">&nbsp;</span>
+                      </h1>
                     </div>
+
                     <p class="white mb-5">
-                      Piaf is the combination of good design, quality code and attention for
-                      details.
+                      LiMed proposes a Blockchain-based Medical system where an individual and authority have access to medical history. Hospitals can add the records when a patient is admitted and individuals can share their data with limited access with others.
                       <br />
-                      <br />We used same design language for components, layouts, apps
-                      and other parts of the template.
+                      <br />The report of the patient is attached to a shared NFT based storage, for which the access key is encrypted over the NuCypher Network, and special privileges are given to medical authorities, the person.
                       <br />
                       <br />Hope you enjoy it!
                     </p>
@@ -115,7 +100,7 @@
                 </div>
                 <div class="col-12 col-xl-7 offset-xl-1 col-lg-7 col-md-6 d-none d-md-block">
                   <a :href="adminRoot" target="_blank">
-                    <img alt="hero" src="/assets/img/landing-page/home-hero.png" />
+                    <img alt="hero" src="/assets/img/eth2.gif" style="margin-left:10rem;height: 40rem;float: right;border-radius: 25%;"/>
                   </a>
                 </div>
               </div>
@@ -151,188 +136,153 @@
             </div>
           </div>
 
-          <div class="section">
-            <div class="container" id="features">
-              <div class="row">
-                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                  <h1>Features At a Glance</h1>
-                  <p>
-                    We tried to create an admin theme that we would like to use ourselves so we listed our
-                    priorities. We
-                    would like to have a theme that is not over complicated to use, does the job well,
-                    contains must have
-                    components and looks really nice.
-                  </p>
-                </div>
-              </div>
+          <!--          <div class="section">-->
+          <!--            <div class="container" id="features">-->
+          <!--              <div class="row">-->
+          <!--                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">-->
+          <!--                  <h1>Features At a Glance</h1>-->
+          <!--                  <p>-->
+          <!--                    We tried to create an admin theme that we would like to use ourselves so we listed our-->
+          <!--                    priorities. We-->
+          <!--                    would like to have a theme that is not over complicated to use, does the job well,-->
+          <!--                    contains must have-->
+          <!--                    components and looks really nice.-->
+          <!--                  </p>-->
+          <!--                </div>-->
+          <!--              </div>-->
 
-              <div v-for="(feature,i) in features" :key="`feature_${i}`">
-                <div v-if="i%2==0" class="row feature-row">
-                  <div class="col-12 col-md-6 col-lg-5 d-flex align-items-center">
-                    <div class="feature-text-container">
-                      <h2>{{feature.title}}</h2>
-                      <p v-html="feature.detail"></p>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative">
-                    <img
-                      :alt="feature.title"
-                      :src="feature.img"
-                      class="feature-image-right feature-image-charts position-relative"
-                    />
-                  </div>
-                </div>
-                <div v-if="i%2==1" class="row feature-row">
-                  <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">
-                    <img
-                      :alt="feature.title"
-                      :src="feature.img"
-                      class="feature-image-left feature-image-charts"
-                    />
-                  </div>
-                  <div
-                    class="col-12 col-md-6 offset-md-0 col-lg-5 offset-lg-1 d-flex align-items-center order-1 order-md-2"
-                  >
-                    <div class="feature-text-container">
-                      <h2>{{feature.title}}</h2>
-                      <p v-html="feature.detail"></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!--              <div v-for="(feature,i) in features" :key="`feature_${i}`">-->
+          <!--                <div v-if="i%2==0" class="row feature-row">-->
+          <!--                  <div class="col-12 col-md-6 col-lg-5 d-flex align-items-center">-->
+          <!--                    <div class="feature-text-container">-->
+          <!--                      <h2>{{feature.title}}</h2>-->
+          <!--                      <p v-html="feature.detail"></p>-->
+          <!--                    </div>-->
+          <!--                  </div>-->
+          <!--                  <div class="col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative">-->
+          <!--                    <img-->
+          <!--                      :alt="feature.title"-->
+          <!--                      :src="feature.img"-->
+          <!--                      class="feature-image-right feature-image-charts position-relative"-->
+          <!--                    />-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--                <div v-if="i%2==1" class="row feature-row">-->
+          <!--                  <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">-->
+          <!--                    <img-->
+          <!--                      :alt="feature.title"-->
+          <!--                      :src="feature.img"-->
+          <!--                      class="feature-image-left feature-image-charts"-->
+          <!--                    />-->
+          <!--                  </div>-->
+          <!--                  <div-->
+          <!--                    class="col-12 col-md-6 offset-md-0 col-lg-5 offset-lg-1 d-flex align-items-center order-1 order-md-2"-->
+          <!--                  >-->
+          <!--                    <div class="feature-text-container">-->
+          <!--                      <h2>{{feature.title}}</h2>-->
+          <!--                      <p v-html="feature.detail"></p>-->
+          <!--                    </div>-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
 
-          <div class="section background">
-            <div class="container" id="layouts">
-              <div class="row">
-                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                  <h1>Structures &amp; Layouts</h1>
-                  <p>
-                    We did our best to create layouts for various needs that developers might have and best
-                    experience
-                    for users.
-                    <br />They are clean and slick. They function well and look good at the same time.
-                  </p>
-                </div>
-              </div>
+          <!--          <div class="section background">-->
+          <!--            <div class="container" id="layouts">-->
+          <!--              <div class="row">-->
+          <!--                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">-->
+          <!--                  <h1>Structures &amp; Layouts</h1>-->
+          <!--                  <p>-->
+          <!--                    We did our best to create layouts for various needs that developers might have and best-->
+          <!--                    experience-->
+          <!--                    for users.-->
+          <!--                    <br />They are clean and slick. They function well and look good at the same time.-->
+          <!--                  </p>-->
+          <!--                </div>-->
+          <!--              </div>-->
 
-              <div class="row pt-5">
-                <div
-                  class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-5"
-                  v-for="(l,index) in layouts"
-                  :key="`layout_${index}`"
-                >
-                  <img class="img-fluid border-radius depth-2 mb-3 semi-rounded" :src="l.img" />
-                  <h4 class="text-center">{{l.title}}</h4>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!--              <div class="row pt-5">-->
+          <!--                <div-->
+          <!--                  class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-5"-->
+          <!--                  v-for="(l,index) in layouts"-->
+          <!--                  :key="`layout_${index}`"-->
+          <!--                >-->
+          <!--                  <img class="img-fluid border-radius depth-2 mb-3 semi-rounded" :src="l.img" />-->
+          <!--                  <h4 class="text-center">{{l.title}}</h4>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
 
-          <div class="section mb-0">
-            <div class="container" id="components">
-              <div class="row mb-5">
-                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                  <h1>Components</h1>
-                  <p>
-                    We used most popular and well managed open source components with bootstrap components.
-                    Combined them into even more useful ones. Themed them with same design principles and
-                    created a design harmony between components and layouts.
-                    <br />
-                    <br />From carousels to charts, switches to list we tried to provide components that we like
-                    to use on our development processes.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <img class="components-image mb-5 pb-5" src="/assets/img/landing-page/components.jpg" />
-          </div>
+          <!--          <div class="section mb-0">-->
+          <!--            <div class="container" id="components">-->
+          <!--              <div class="row mb-5">-->
+          <!--                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">-->
+          <!--                  <h1>Components</h1>-->
+          <!--                  <p>-->
+          <!--                    We used most popular and well managed open source components with bootstrap components.-->
+          <!--                    Combined them into even more useful ones. Themed them with same design principles and-->
+          <!--                    created a design harmony between components and layouts.-->
+          <!--                    <br />-->
+          <!--                    <br />From carousels to charts, switches to list we tried to provide components that we like-->
+          <!--                    to use on our development processes.-->
+          <!--                  </p>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--            <img class="components-image mb-5 pb-5" src="/assets/img/landing-page/components.jpg" />-->
+          <!--          </div>-->
 
-          <div class="section background">
-            <div class="container" id="apps">
-              <div class="row">
-                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
-                  <h1>Applications</h1>
-                  <p class="section-text">
-                    With the help of components and layouts, we created four different applications.
-                    They
-                    are a good way to get you started
-                    if you want to build something similar.
-                  </p>
-                </div>
-              </div>
-              <div class="row screenshots">
-                <div class="col-12 text-center mb-4">
-                  <b-tabs
-                    nav-class="justify-content-center"
-                    content-class="card-body pt-0"
-                    :no-fade="true"
-                  >
-                    <b-tab
-                      v-for="(app,index) in applications"
-                      :key="`app_${index}`"
-                      :title="app.title"
-                    >
-                      <router-link :to="app.path">
-                        <img :alt="app.title" :src="app.img" class="app-image" />
-                      </router-link>
-                    </b-tab>
-                  </b-tabs>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!--          <div class="section background">-->
+          <!--            <div class="container" id="apps">-->
+          <!--              <div class="row">-->
+          <!--                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">-->
+          <!--                  <h1>Applications</h1>-->
+          <!--                  <p class="section-text">-->
+          <!--                    With the help of components and layouts, we created four different applications.-->
+          <!--                    They-->
+          <!--                    are a good way to get you started-->
+          <!--                    if you want to build something similar.-->
+          <!--                  </p>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--              <div class="row screenshots">-->
+          <!--                <div class="col-12 text-center mb-4">-->
+          <!--                  <b-tabs-->
+          <!--                    nav-class="justify-content-center"-->
+          <!--                    content-class="card-body pt-0"-->
+          <!--                    :no-fade="true"-->
+          <!--                  >-->
+          <!--                    <b-tab-->
+          <!--                      v-for="(app,index) in applications"-->
+          <!--                      :key="`app_${index}`"-->
+          <!--                      :title="app.title"-->
+          <!--                    >-->
+          <!--                      <router-link :to="app.path">-->
+          <!--                        <img :alt="app.title" :src="app.img" class="app-image" />-->
+          <!--                      </router-link>-->
+          <!--                    </b-tab>-->
+          <!--                  </b-tabs>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
 
-          <div class="section mb-0">
-            <div class="container" id="themes">
-              <div class="row mb-5">
-                <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                  <h1>Themes</h1>
-                  <p>
-                    We carefully choosed colors and created 10 different themes with dark and light
-                    versions. You may also
-                    create your own themes easily since all the theme related styling is managed by Sass
-                    variables.
-                  </p>
-                </div>
-              </div>
-              <div class="row mb-5" v-for="(t,index) in themes" :key="`themes_${index}`">
-                <div class="col-12 text-center mb-3">
-                  <h4 class="text-center">{{t.title}}</h4>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 offset-lg-2 mb-3">
-                  <div class="depth-2 color-container">
-                    <div
-                      v-for="(align,i) in ['left','center','right']"
-                      :key="`align_light_${index}_${i}`"
-                      :class="t.class + '-light-'+(i+1)+' color-' + align"
-                    ></div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-3">
-                  <div class="depth-2 color-container">
-                    <div
-                      v-for="(align,i) in ['left','center','right']"
-                      :key="`align_dark_${index}_${i}`"
-                      :class="t.class + '-dark-'+(i+1)+' color-' + align"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!--          <div class="section mb-0">-->
+          <!--            <div class="container" id="themes">-->
+          <!--            </div>-->
+          <!--          </div>-->
 
           <div class="section background background-no-bottom mb-0 pb-0">
             <div class="container">
               <div class="row">
                 <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                  <h1>Enjoying so Far?</h1>
-                  <p>Purchase Piaf to get a fresh start with your new project.</p>
+                  <h1>Get Started</h1>
                 </div>
                 <div class="col-12 offset-0 col-lg-6 offset-lg-3 newsletter-input-container">
                   <div class="text-center mb-3">
-                    <a class="btn btn-secondary btn-xl" target="_blank" :href="buyUrl">BUY NOW</a>
+                    <a class="btn btn-secondary btn-xl" target="_blank" :href="buyUrl">DASHBOARD</a>
                   </div>
                 </div>
               </div>
@@ -353,7 +303,7 @@
                 </div>
                 <div class="col-12 text-center footer-content">
                   <a @click="scrollTo('#home')" href="javascript:;">
-                    <img class="footer-logo" alt="footer logo" src="/assets/logos/white-full.svg" />
+                    <img class="footer-logo" alt="footer logo" src="/logo.png" />
                   </a>
                 </div>
               </div>
@@ -362,7 +312,7 @@
               <div class="row">
                 <div class="col-12"></div>
                 <div class="col-12 text-center">
-                  <p class="mb-0">2020 © ColoredStrategies</p>
+                  <p class="mb-0">2021</p>
                 </div>
               </div>
             </div>
@@ -372,13 +322,38 @@
     </div>
   </home-layout>
 </template>
+<style lang="scss" scoped>
 
+h1 {
+  font-size: 4rem;
+  font-weight: normal;
+  span.typed-text {
+    color: #D2B94B;
+  }
+  span.cursor {
+    display: inline-block;
+    margin-left: 3px;
+    width: 4px;
+    background-color: #fff;
+    animation: cursorBlink 1s infinite;
+  }
+  span.cursor.typing {
+    animation: none;
+  }
+}
+@keyframes cursorBlink {
+  49% { background-color: #fff; }
+  50% { background-color: transparent; }
+  99% { background-color: transparent; }
+}
+</style>
 <script>
 import { headroom } from "vue-headroom";
 import VueScrollTo from "vue-scrollto";
 import HomeLayout from "../../layouts/HomeLayout";
 import GlideComponent from "../../components/Carousel/GlideComponent";
 import { adminRoot, buyUrl } from "../../constants/config";
+import { setTimeout } from 'timers';
 const slideSettings = {
   type: "carousel",
   gap: 30,
@@ -395,52 +370,34 @@ const slideSettings = {
 const slideItems = [
   {
     icon: "iconsminds-mouse-3",
-    title: "Right Click Menu",
+    title: "Medical Records",
     detail:
-      "Increases overall usability of the project by providing additional actions menu."
+      "Decentralized medical storage facility with complete access control for each user"
   },
   {
     icon: "iconsminds-electric-guitar",
-    title: "Video Player",
+    title: "Complete Encryption",
     detail:
-      "Carefully themed multimedia players powered by Video.js library with Youtube support."
+      "All the entries made by a medical authority is completely encryted through Nucypher"
   },
   {
     icon: "iconsminds-keyboard",
-    title: "Keyboard Shortcuts",
+    title: "Costs Nothing",
     detail:
-      "Easily configurable keyboard shortcuts plugin that highly improves user experience."
+      "Using Portis as the wallet thus there is no Gas fees for any User to get onboarded"
   },
   {
     icon: "iconsminds-three-arrow-fork ",
-    title: "Two Panels Menu",
+    title: "Seamless Access Management",
     detail:
-      "Three states two panels icon menu that looks good, auto resizes and does the job well."
+      "User will be able to give access to certain medical facilites for them to append and access records."
   },
   {
     icon: "iconsminds-deer",
-    title: "Icons Mind",
+    title: "Handle Emergencies",
     detail:
-      "1040 icons in 53 different categories, designed pixel perfect and ready for your project."
+      "For medical emergencies ,first responders can get patient data and treat accurately."
   },
-  {
-    icon: "iconsminds-palette",
-    title: "20 Color Schemes",
-    detail:
-      "Colors, icons and design harmony that creates excellent themes to cover entire project."
-  },
-  {
-    icon: "iconsminds-air-balloon-1",
-    title: "3 Applications",
-    detail:
-      "Applications that mostly made of components are the way to get started to create something similar."
-  },
-  {
-    icon: "iconsminds-resize",
-    title: "Extra Responsive",
-    detail:
-      "Custom Bootstrap 4 xxs & xxl classes delivers better experiences for smaller and larger screens."
-  }
 ];
 
 const features = [
@@ -561,7 +518,7 @@ export default {
   components: {
     "home-layout": HomeLayout,
     "glide-component": GlideComponent,
-    headroom: headroom
+    headroom: headroom,
   },
   data() {
     return {
@@ -573,7 +530,15 @@ export default {
       features,
       layouts,
       applications,
-      themes
+      themes,
+      typeValue: '',
+      typeStatus: false,
+      typeArray: ['fun', 'awesome', 'a journey'],
+      typingSpeed: 200,
+      erasingSpeed: 100,
+      newTextDelay: 2000,
+      typeArrayIndex: 0,
+      charIndex: 0
     };
   },
   methods: {
@@ -614,6 +579,38 @@ export default {
     window.removeEventListener("scroll", this.onWindowScroll);
     window.removeEventListener("resize", this.onWindowResize);
     window.removeEventListener("click", this.onWindowClick);
+  },
+  typeText() {
+    if(this.charIndex < this.typeArray[this.typeArrayIndex].length) {
+      if(!this.typeStatus)
+        this.typeStatus = true;
+      this.typeValue += this.typeArray[this.typeArrayIndex].charAt(this.charIndex);
+      this.charIndex += 1;
+      setTimeout(this.typeText, this.typingSpeed);
+    }
+    else {
+      this.typeStatus = false;
+      setTimeout(this.eraseText, this.newTextDelay);
+    }
+  },
+  eraseText() {
+    if(this.charIndex > 0) {
+      if(!this.typeStatus)
+        this.typeStatus = true;
+      this.typeValue = this.typeArray[this.typeArrayIndex].substring(0, this.charIndex - 1);
+      this.charIndex -= 1;
+      setTimeout(this.eraseText, this.erasingSpeed);
+    }
+    else {
+      this.typeStatus = false;
+      this.typeArrayIndex += 1;
+      if(this.typeArrayIndex >= this.typeArray.length)
+        this.typeArrayIndex = 0;
+      setTimeout(this.typeText, this.typingSpeed + 1000);
+    }
+  },
+  created(){
+    setTimeout(this.typeText, this.newTextDelay + 200);
   }
 };
 </script>

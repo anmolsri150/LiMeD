@@ -2,38 +2,16 @@
   <b-row>
     <b-colxx xxs="12">
       <h1>Documents</h1>
-      <div class="top-right-button-container">
-        <b-button
-          v-b-modal.modalright
-          variant="primary"
-          size="lg"
-          class="top-right-button"
-        >{{ this.t === 't' ? "Grant Access" : $t('pages.add-new') }}</b-button>
-<!--        <b-button-group>-->
-<!--          <b-dropdown split right @click="selectAll(true)" class="check-button" variant="primary">-->
-<!--            <label-->
-<!--              class="custom-control custom-checkbox pl-4 mb-0 d-inline-block"-->
-<!--              slot="button-content"-->
-<!--            >-->
-<!--              <input-->
-<!--                class="custom-control-input"-->
-<!--                type="checkbox"-->
-<!--                :checked="isSelectedAll"-->
-<!--                v-shortkey="{select: ['ctrl','a'], undo: ['ctrl','d']}"-->
-<!--                @shortkey="keymap"-->
-<!--              />-->
-<!--              <span-->
-<!--                :class="{-->
-<!--                'custom-control-label' :true,-->
-<!--                'indeterminate' : isAnyItemSelected-->
-<!--                }"-->
-<!--              >&nbsp;</span>-->
-<!--            </label>-->
-<!--            <b-dropdown-item>{{$t('pages.delete')}}</b-dropdown-item>-->
-<!--            <b-dropdown-item>{{$t('pages.another-action')}}</b-dropdown-item>-->
-<!--          </b-dropdown>-->
-<!--        </b-button-group>-->
-      </div>
+      <template v-if="addNewEnable">
+        <div class="top-right-button-container">
+          <b-button
+            v-b-modal.modalright
+            variant="primary"
+            size="lg"
+            class="top-right-button"
+          >{{ this.t === 't' ? "Grant Access" : $t('pages.add-new') }}</b-button>
+        </div>
+      </template>
       <add-new-modal :categories="categories" :statuses="statuses"></add-new-modal>
       <piaf-breadcrumb />
       <div class="mb-2 mt-2">
@@ -139,7 +117,8 @@ export default {
     "from",
     "to",
     "total",
-    "perPage"
+    "perPage",
+    "addNewEnable"
   ],
   data() {
     return {

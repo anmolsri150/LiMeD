@@ -135,7 +135,7 @@ export default {
     async searchPatient() {
       console.log('sd')
       this.loading = true
-      const patient = await window.contract.methods.getPatientDetails(this.searchAddr).send({
+      const patient = await window.contract.methods.getPatientDetails(this.searchAddr).call({
         from: this.currentUser.uid
       }).catch((err) => {
         console.log(err.message)

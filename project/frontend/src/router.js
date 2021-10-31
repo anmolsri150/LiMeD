@@ -34,20 +34,32 @@ const routes = [
         // meta: { roles: [UserRole.Admin, UserRole.Editor] },
       },
       {
+        path: "patients",
+        component: () =>
+          import(/* webpackChunkName: "product" */ "./views/app/pages/product/PatientList")
+        // meta: { roles: [UserRole.Admin, UserRole.Editor] },
+      },
+      {
+        path: "patients/:id",
+        component: () =>
+          import(/* webpackChunkName: "product" */ "./views/app/pages/product/PatientList")
+        // meta: { roles: [UserRole.Admin, UserRole.Editor] },
+      },
+      {
         path: "access",
         component: () =>
           import(/* webpackChunkName: "product" */ "./views/app/pages/product/DataList")
-        // meta: { roles: [UserRole.Admin, UserRole.Editor] },
+          // meta: { roles: [UserRole.Admin, UserRole.Editor] },
       },
       {
         path: "dashboards",
         component: () =>
           import(/* webpackChunkName: "dashboards" */ "./views/app/dashboards"),
-        redirect: `${adminRoot}/dashboards/default`,
+        redirect: `${adminRoot}/dashboards/limed`,
         // meta: { roles: [UserRole.Admin, UserRole.Editor] },
         children: [
           {
-            path: "default",
+            path: "limed",
             component: () =>
               import(/* webpackChunkName: "dashboards" */ "./views/app/dashboards/Default"),
             // meta: { roles: [UserRole.Admin] },
@@ -70,6 +82,24 @@ const routes = [
             component: () =>
               import(/* webpackChunkName: "dashboards" */ "./views/app/dashboards/Content"),
             // meta: { roles: [UserRole.Editor] },
+          }
+        ]
+      },
+      {
+        path: "profile",
+        component: () =>
+          import(/* webpackChunkName : "profile" */ "./views/app/pages/profile"),
+        redirect: `${adminRoot}/pages/profile/hospital`,
+        children: [
+          {
+            path: "hospital",
+            component: () =>
+              import(/* webpackChunkName: "profile" */ "./views/app/pages/profile/Social")
+          },
+          {
+            path: "patient",
+            component: () =>
+              import(/* webpackChunkName: "profile" */ "./views/app/pages/profile/Portfolio")
           }
         ]
       },
@@ -116,15 +146,15 @@ const routes = [
             path: "profile",
             component: () =>
               import(/* webpackChunkName : "profile" */ "./views/app/pages/profile"),
-            redirect: `${adminRoot}/pages/profile/social`,
+            redirect: `${adminRoot}/pages/profile/hospital`,
             children: [
               {
-                path: "social",
+                path: "hospital",
                 component: () =>
                   import(/* webpackChunkName: "profile" */ "./views/app/pages/profile/Social")
               },
               {
-                path: "portfolio",
+                path: "patient",
                 component: () =>
                   import(/* webpackChunkName: "profile" */ "./views/app/pages/profile/Portfolio")
               }

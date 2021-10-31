@@ -8,6 +8,7 @@ import chat from './modules/chat'
 import todo from './modules/todo'
 import survey from './modules/survey'
 import { setCurrentLanguage } from '../utils'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
@@ -93,5 +94,6 @@ export default new Vuex.Store({
     chat,
     todo,
     survey
-  }
+  },
+  plugins: [createPersistedState()],
 })

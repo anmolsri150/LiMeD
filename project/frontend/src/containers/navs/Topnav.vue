@@ -34,54 +34,6 @@
     </router-link>
 
     <div class="navbar-right">
-      <div class="header-icons d-inline-block align-middle">
-
-        <div class="position-relative d-inline-block">
-          <b-dropdown
-            variant="empty"
-            size="sm"
-            right
-            toggle-class="header-icon notificationButton"
-            menu-class="position-absolute mt-3 notificationDropdown"
-            no-caret
-          >
-            <template slot="button-content">
-              <i class="simple-icon-bell" />
-              <span class="count">3</span>
-            </template>
-            <vue-perfect-scrollbar :settings="{ suppressScrollX: true, wheelPropagation: false }">
-              <div
-                class="d-flex flex-row mb-3 pb-3 border-bottom"
-                v-for="(n,index) in notifications"
-                :key="index"
-              >
-                <router-link tag="a" to="#">
-                  <img
-                    :src="n.img"
-                    :alt="n.title"
-                    class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle"
-                  />
-                </router-link>
-                <div class="pl-3 pr-2">
-                  <router-link tag="a" to="#">
-                    <p class="font-weight-medium mb-1">{{n.title}}</p>
-                    <p class="text-muted mb-0 text-small">{{n.date}}</p>
-                  </router-link>
-                </div>
-              </div>
-            </vue-perfect-scrollbar>
-          </b-dropdown>
-        </div>
-        <div class="position-relative d-none d-sm-inline-block">
-          <div class="btn-group">
-            <b-button variant="empty" class="header-icon btn-sm" @click="toggleFullScreen">
-              <i
-                :class="{'d-inline-block':true,'simple-icon-size-actual':fullScreen,'simple-icon-size-fullscreen':!fullScreen }"
-              />
-            </b-button>
-          </div>
-        </div>
-      </div>
       <div class="user d-inline-block">
         <b-dropdown
           class="dropdown-menu-right"

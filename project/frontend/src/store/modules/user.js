@@ -6,6 +6,8 @@ import { setCurrentUser, getCurrentUser } from '../../utils'
 export default {
   state: {
     currentUser: isAuthGuardActive ? getCurrentUser() : currentUser,
+    userType: null, // 'hospital' or 'patient'
+    userProfile: null,
     loginError: null,
     processing: false,
     forgotMailSuccess: null,
@@ -13,6 +15,8 @@ export default {
   },
   getters: {
     currentUser: state => state.currentUser,
+    userType: state => state.userType,
+    userProfile: state => state.userProfile,
     processing: state => state.processing,
     loginError: state => state.loginError,
     forgotMailSuccess: state => state.forgotMailSuccess,
@@ -27,8 +31,16 @@ export default {
       state.processing = false
       state.loginError = null
     },
+    setUserProfile(state, payload) {
+      state.userProfile = payload
+    },
+    setUserType(state, payload) {
+      state.userType = payload
+    },
     setLogout(state) {
       state.currentUser = null
+      state.userProfile = null
+      state.userType = null
       state.processing = false
       state.loginError = null
     },
@@ -62,72 +74,6 @@ export default {
       commit('clearError')
       commit('setProcessing', true)
       window.portis.showPortis();
-      // firebase
-      //   .auth()
-      //   .signInWithEmailAndPassword(payload.email, payload.password)
-      //   .then(
-      //     user => {
-      //       const item = { uid: user.user.uid, ...currentUser }
-      //       setCurrentUser(item)
-      //       commit('setUser', item)
-      //     },
-      //     err => {
-      //       setCurrentUser(null);
-      //       commit('setError', err.message)
-      //       setTimeout(() => {
-      //         commit('clearError')
-      //       }, 3000)
-      //     }
-      //   )
     },
-    forgotPassword({ commit }, payload) {
-      commit('clearError')
-      commit('setProcessing', true)
-      firebase
-        .auth()
-        .sendPasswordResetEmail(payload.email)
-        .then(
-          user => {
-            commit('clearError')
-            commit('setForgotMailSuccess')
-          },
-          err => {
-            commit('setError', err.message)
-            setTimeout(() => {
-              commit('clearError')
-            }, 3000)
-          }
-        )
-    },
-    resetPassword({ commit }, payload) {
-      commit('clearError')
-      commit('setProcessing', true)
-      firebase
-        .auth()
-        .confirmPasswordReset(payload.resetPasswordCode, payload.newPassword)
-        .then(
-          user => {
-            commit('clearError')
-            commit('setResetPasswordSuccess')
-          },
-          err => {
-            commit('setError', err.message)
-            setTimeout(() => {
-              commit('clearError')
-            }, 3000)
-          }
-        )
-    },
-
-
-    signOut({ commit }) {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          setCurrentUser(null);
-          commit('setLogout')
-        }, _error => { })
-    }
   }
 }

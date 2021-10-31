@@ -8,6 +8,8 @@
         :isSelectedAll="isSelectedAll"
         :isAnyItemSelected="isAnyItemSelected"
         :keymap="keymap"
+        :addNewEnable="true"
+        type="document"
         :displayMode="displayMode"
         :changeDisplayMode="changeDisplayMode"
         :changeOrderBy="changeOrderBy"
