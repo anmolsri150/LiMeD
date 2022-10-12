@@ -22,7 +22,7 @@
     "nft.storage": "^3.3.0",
     "truffle": "^5.4.17",
     "v-contextmenu": "^2.9.0",
-    "video.js": "^7.8.3",
+    "video.js": "^7.20.3",
     "vue": "^2.6.11",
     "vue-autosuggest": "^2.2.0",
     "vue-headroom": "0.10.1",
