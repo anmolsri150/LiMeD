@@ -1,5 +1,5 @@
 # LiMeD
-[![View Live](https://limed-gecko.web.app/)
+[![View Live](https://img.shields.io/badge/View-Live-success?style=for-the-badge)](https://limed-gecko.web.app/)
 
 ## The problem LiMeD solves
 While the most developed countries in the world saw failing medical facilities, Taiwan was preparing itself for a major outbreak for 17 years (since the SARS outbreak). The preparation included using medical and travel records of citizens and categorizing high-risk personnel. This led to the free and safe movement of other citizens and provided medical assistance in time. As of today, Taiwan has 15K Cases and around 700 deaths.
